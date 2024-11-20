@@ -17,7 +17,7 @@ jobs:
 
     - name: Upload test.m to Artifactory
       env:
-        ARTIFACTORY_URL: https://trialebic7z.jfrog.io/artifactory/matlab_files-generic-local/
+        ARTIFACTORY_URL: https://trialebic7z.jfrog.io/artifactory/matlab_files-generic-local/p-files
         ARTIFACTORY_API_KEY: ${{ secrets.ARTIFACTORY_API_KEY }}  # Add your Artifactory API key as a GitHub secret
       run: |
         # Upload the file using curl
