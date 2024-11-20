@@ -15,9 +15,11 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v3
 
-    - name: Installing matlab version
-      run: |
-        cadenv -r 2018b.u8 matlab
+    - name: Set up MATLAB
+      uses: matlab-actions/setup-matlab@v2
+      with:
+        release: latest  # Use the latest MATLAB release available on GitHub Actions
+
 
     - name: Running batch
       continue-on-error: false
