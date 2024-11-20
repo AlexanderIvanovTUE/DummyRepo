@@ -19,7 +19,7 @@ jobs:
         ARTIFACTORY_API_KEY: ${{ secrets.ARTIFACTORY_API_KEY }}  # Add your Artifactory API key as a GitHub secret
       run: |
         # Specify the file path
-        FILE_PATH= */test.m  # Update with the relative path to test.m in your repo
+        FILE_PATH=test.m  # Update with the relative path to test.m in your repo
 
         # Upload the file using curl
         curl -u ":$ARTIFACTORY_API_KEY" -T $FILE_PATH "$ARTIFACTORY_URL$(basename $FILE_PATH)"
