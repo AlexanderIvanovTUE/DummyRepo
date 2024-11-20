@@ -15,17 +15,6 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v3
 
-    - name: Set up MATLAB
-      uses: matlab-actions/setup-matlab@v2
-      with:
-        release: latest  # Use the latest MATLAB release available on GitHub Actions
-
-
-    - name: Running batch
-      continue-on-error: false
-      run: |
-        matlab -batch "convert_m_to_p("m_files")"
-
     - name: Upload test.m to Artifactory
       env:
         ARTIFACTORY_URL: https://trialebic7z.jfrog.io/artifactory/matlab_files-generic-local/
