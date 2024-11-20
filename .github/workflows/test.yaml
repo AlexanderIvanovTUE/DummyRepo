@@ -1,0 +1,25 @@
+name: Upload test.m to Artifactory
+
+on:
+  push:
+    branches:
+      - main  # Run the workflow on pushes to the main branch
+
+jobs:
+  upload-to-artifactory:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Upload test.m to Artifactory
+      env:
+        ARTIFACTORY_URL: https://trialebic7z.jfrog.io/artifactory/matlab_files-generic-local/
+        ARTIFACTORY_API_KEY: ${{ secrets.ARTIFACTORY_API_KEY }}  # Add your Artifactory API key as a GitHub secret
+      run: |
+        # Specify the file path
+        FILE_PATH=path/to/test.m  # Update with the relative path to test.m in your repo
+
+        # Upload the file using curl
+        curl -u ":$ARTIFACTORY_API_KEY" -T $FILE_PATH "$ARTIFACTORY_URL$(basename $FILE_PATH)"
