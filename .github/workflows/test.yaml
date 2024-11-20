@@ -13,13 +13,23 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v3
 
+    - name: Installing matlab version
+      run: |
+        cadenv -r 2018b.u8 matlab
+
+    - name: Running batch
+      continue-on-error: false
+      run: |
+        matlab -batch "convert_m_to_p("m_files")
+
     - name: Upload test.m to Artifactory
       env:
         ARTIFACTORY_URL: https://trialebic7z.jfrog.io/artifactory/matlab_files-generic-local/
         ARTIFACTORY_API_KEY: ${{ secrets.ARTIFACTORY_API_KEY }}  # Add your Artifactory API key as a GitHub secret
       run: |
         # Specify the file path
-        FILE_PATH=test.m  # Update with the relative path to test.m in your repo
+        FILE_PATH= p_files  # Update with the relative path to test.m in your repo
 
         # Upload the file using curl
         curl -u ":$ARTIFACTORY_API_KEY" -T $FILE_PATH "$ARTIFACTORY_URL$(basename $FILE_PATH)"
+        rm -rf p_files
