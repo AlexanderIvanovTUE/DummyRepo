@@ -24,7 +24,7 @@ jobs:
     - name: Running batch
       continue-on-error: false
       run: |
-        matlab -batch "convert_m_to_p("m_files")
+        matlab -batch "convert_m_to_p("m_files")"
 
     - name: Upload test.m to Artifactory
       env:
